@@ -37,20 +37,28 @@ module RobotsHelper
 		end
 	end
 
+	def set_arrays
+		Array @direction_array = Array.new
+		Array @position_array = Array.new
+		@direction_array = ["NORTH","EAST","SOUTH","WEST"]
+		@position_array = [0,90,180,270]
+	end
+
 	def set_place (robot, string)
+		set_arrays
+
 		string = string.delete "PLACE_"
 		string_array = string.split(',')
+
+
 
 		robot.x_coordinate = string_array.at(0)
 		robot.y_coordinate = string_array.at(1)
 
-		Array direction_array = Array.new
-		Array position_array = Array.new
-		direction_array = ["NORTH","EAST", "SOUTH","WEST"]
-		position_array = [0,90,180,270]
 
-		index = direction_array.index(string_array.at(2))
-		robot.position = position_array.at(index)
+		index = @direction_array.index(string_array.at(2))
+
+		robot.position = @position_array.at(index)
 		robot.update_attributes(position: robot.position, x_coordinate: robot.x_coordinate, y_coordinate: robot.y_coordinate)
 	end
 
@@ -72,6 +80,16 @@ module RobotsHelper
 			robot.y_coordinate -= 1 if robot.y_coordinate > 0
 		when 270
 			robot.x_coordinate -= 1 if robot.x_coordinate > 0
+		end
+	end
+
+	def get_report(robot)
+		unless robot.position.nil?
+			set_arrays
+			index = @position_array.index(robot.position)
+			report = "#{robot.x_coordinate},#{robot.y_coordinate},#{@direction_array.at(index)}"
+		else
+			report = "Robot #{robot.name} is not placed on the table yet."
 		end
 	end
 end
