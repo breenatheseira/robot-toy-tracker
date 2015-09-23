@@ -14,7 +14,7 @@
     <% @robots.each do |robot| %>
       <tr>
         <td><%= robot.name %></td>
-        <td><%= robot.reported_position(robot) %></td>
+        <td><%= get_report(robot) %></td>
         <td><%= link_to 'Show', robot %></td>
         <td><%= link_to 'Edit', edit_robot_path(robot) %></td>
         <td><%= link_to 'Destroy', robot, method: :delete, data: { confirm: 'Are you sure?' } %></td>
