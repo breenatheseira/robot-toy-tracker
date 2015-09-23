@@ -1,26 +1,27 @@
 <h1>Listing Robots</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Current Position</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @robots.each do |robot| %>
+<div class="text-center">
+  <table class="table table-striped table-hover">
+    <thead>
       <tr>
-        <td><%= robot.name %></td>
-        <td><%= get_report(robot) %></td>
-        <td><%= link_to 'Show', robot %></td>
-        <td><%= link_to 'Edit', edit_robot_path(robot) %></td>
-        <td><%= link_to 'Destroy', robot, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th style="text-align:center">Name</th>
+        <th style="text-align:center">Current Position</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
+    <tbody>
+      <% @robots.each do |robot| %>
+        <tr>
+          <td><%= robot.name %></td>
+          <td><%= get_report(robot) %></td>
+          <td><%= link_to 'Show', robot %></td>
+          <td><%= link_to 'Edit', edit_robot_path(robot) %></td>
+          <td><%= link_to 'Destroy', robot, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 <br>
 
 <%= link_to 'New Robot', new_robot_path %>
