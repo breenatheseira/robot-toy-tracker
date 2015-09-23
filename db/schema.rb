@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150923075346) do
+ActiveRecord::Schema.define(version: 20150923090130) do
 
   create_table "robots", force: :cascade do |t|
     t.datetime "created_at",   null: false
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20150923075346) do
     t.string   "name"
     t.integer  "x_coordinate"
     t.integer  "y_coordinate"
-    t.string   "position"
+    t.integer  "position"
   end
 
 end
