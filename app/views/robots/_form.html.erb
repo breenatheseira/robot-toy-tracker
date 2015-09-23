@@ -11,7 +11,16 @@
     </div>
   <% end %>
 
+  <%= form_for @robot do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.label "Command for Robot:" %>
+    <%= text_field_tag :command %>  
+
+
   <div class="actions">
     <%= f.submit %>
   </div>
+  <% end %>
 <% end %>

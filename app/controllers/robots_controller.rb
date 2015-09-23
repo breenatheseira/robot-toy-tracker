@@ -69,6 +69,6 @@ class RobotsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def robot_params
-      params[:robot]
+      params[:robot].permit(:name, :x_coordinate, :y_coordinate, :position, :command)
     end
 end
