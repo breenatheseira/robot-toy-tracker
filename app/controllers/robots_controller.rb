@@ -1,6 +1,6 @@
 class RobotsController < ApplicationController
   before_action :set_robot, only: [:show, :edit, :update, :destroy]
-
+  include RobotsHelper
   # GET /robots
   # GET /robots.json
   def index
@@ -26,6 +26,8 @@ class RobotsController < ApplicationController
   def create
     @robot = Robot.new(robot_params)
 
+    transform_command_to_movement(@robot, params[:command])
+
     respond_to do |format|
       if @robot.save
         format.html { redirect_to @robot, notice: 'Robot was successfully created.' }
@@ -40,6 +42,7 @@ class RobotsController < ApplicationController
   # PATCH/PUT /robots/1
   # PATCH/PUT /robots/1.json
   def update
+    transform_command_to_movement(@robot, params[:command])
     respond_to do |format|
       if @robot.update(robot_params)
         format.html { redirect_to @robot, notice: 'Robot was successfully updated.' }
