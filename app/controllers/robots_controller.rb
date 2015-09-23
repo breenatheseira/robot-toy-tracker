@@ -26,11 +26,13 @@ class RobotsController < ApplicationController
   def create
     @robot = Robot.new(robot_params)
 
-    transform_command_to_movement(@robot, params[:command])
-
+    report_exists = transform_command_to_movement(@robot, params[:command])    
     respond_to do |format|
       if @robot.save
-        format.html { redirect_to @robot, notice: 'Robot was successfully created.' }
+        format.html { 
+          flash[:notice] = 'Robot was successfully created.'
+          select_route(report_exists)
+        }
         format.json { render :show, status: :created, location: @robot }
       else
         format.html { render :new }
@@ -42,10 +44,13 @@ class RobotsController < ApplicationController
   # PATCH/PUT /robots/1
   # PATCH/PUT /robots/1.json
   def update
-    transform_command_to_movement(@robot, params[:command])
+    report_exists = transform_command_to_movement(@robot, params[:command])
     respond_to do |format|
       if @robot.update(robot_params)
-        format.html { redirect_to @robot, notice: 'Robot was successfully updated.' }
+        format.html { 
+          flash[:notice] = 'Robot was successfully updated.' 
+          select_route(report_exists)
+        }
         format.json { render :show, status: :ok, location: @robot }
       else
         format.html { render :edit }
@@ -73,5 +78,13 @@ class RobotsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def robot_params
       params[:robot].permit(:name, :x_coordinate, :y_coordinate, :position, :command)
+    end
+
+    def select_route(report)
+      if report
+        redirect_to robot_path(@robot)
+      else 
+        redirect_to edit_robot_path(@robot)
+      end
     end
 end
