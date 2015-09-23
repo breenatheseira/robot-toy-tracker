@@ -1,4 +1,5 @@
 module RobotsHelper
+
 	def transform_command_to_movement(robot,command)
 		command = command.upcase
 
@@ -9,6 +10,8 @@ module RobotsHelper
 
 		# All the commands are split here
 		command_array = command.split
+
+		logger.info "command array: #{command_array}"
 
 		for element in command_array
 			should_update_robot = true
@@ -47,14 +50,12 @@ module RobotsHelper
 	def set_place (robot, string)
 		set_arrays
 
-		string = string.delete "PLACE_"
-		string_array = string.split(',')
+		string_array = string[6..-1].split(',')		
 
-
+		logger.info "string_array: #{string_array}"
 
 		robot.x_coordinate = string_array.at(0)
 		robot.y_coordinate = string_array.at(1)
-
 
 		index = @direction_array.index(string_array.at(2))
 
