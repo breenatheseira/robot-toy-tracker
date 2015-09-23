@@ -31,6 +31,6 @@ Report: 0,0,SOUTH
 
 5. E <br/>
 Name: E <br/>
-Command for Robot: PLACE 1,1,NORTH LEFT MOVE MOVE RIGHT <br/>
+Command for Robot: PLACE 1,1,NORTH LEFT MOVE MOVE RIGHT REPORT <br/>
 Output: <br/>
 Report: 0,1,WEST
