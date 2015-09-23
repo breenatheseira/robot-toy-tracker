@@ -1,44 +1,36 @@
 Each case is a new robot:
 
-1. 
-Name: A
-Command for robot:
-MOVE MOVE REPORT
-
-Output:
+1. A <br/>
+Name: A 
+<br/>
+Command for robot: MOVE MOVE REPORT <br/>
+Output: <br/>
 Report: Robot Sam is not placed on the table yet.
 
-2.
+2. B <br/>
 Name: B
-Command for Robot:
-PLACE 0,0,North MOVE MOVE
-REPORT
-
-Output: 
+<br/>
+Command for Robot: PLACE 0,0,North MOVE MOVE <br/>
+REPORT <br/>
+Output: <br/>
 Report: 0,2,NORTH 
 
-3.
+3. C <br/>
 Name: C
-Command for Robot:
-MOVE PLACE 0,0,WEST MOVE LEFT MOVE
-REPORT
-
-Output: 
+<br/>
+Command for Robot: MOVE PLACE 0,0,WEST MOVE LEFT MOVE <br/>
+REPORT <br/>
+Output: <br/>
 Report: 0,0,SOUTH
 
-4.
-Name: D
-Command for Robot:
-PLACE 3,2,WEST MOVE LEFT MOVE PLACE 0,5,EAST REPORT
-REPORT
-
-Output: 
+4. D <br/>
+Name: D <br/>
+Command for Robot: PLACE 3,2,WEST MOVE LEFT MOVE PLACE 0,5,EAST REPORT <br/>
+Output: <br/>
 Report: 0,0,SOUTH
 
-5.
-Name: D
-Command for Robot:
-PLACE 1,1,NORTH LEFT MOVE MOVE RIGHT
-
-Output: 
-0,1,WEST
+5. E <br/>
+Name: E <br/>
+Command for Robot: PLACE 1,1,NORTH LEFT MOVE MOVE RIGHT <br/>
+Output: <br/>
+Report: 0,1,WEST
