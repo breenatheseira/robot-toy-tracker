@@ -54,13 +54,18 @@ module RobotsHelper
 
 		logger.info "string_array: #{string_array}"
 
-		robot.x_coordinate = string_array.at(0)
-		robot.y_coordinate = string_array.at(1)
+		x = string_array.at(0)
+		y = string_array.at(1)
 
-		index = @direction_array.index(string_array.at(2))
+		if (x.to_i < 6 && x.to_i > -1) && (y.to_i < 6 && y.to_i > -1)
+			robot.x_coordinate = string_array.at(0)
+			robot.y_coordinate = string_array.at(1)
 
-		robot.position = @position_array.at(index)
-		robot.update_attributes(position: robot.position, x_coordinate: robot.x_coordinate, y_coordinate: robot.y_coordinate)
+			index = @direction_array.index(string_array.at(2))
+
+			robot.position = @position_array.at(index)
+			robot.update_attributes(position: robot.position, x_coordinate: robot.x_coordinate, y_coordinate: robot.y_coordinate)
+		end
 	end
 
 	def set_left (robot)
