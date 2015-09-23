@@ -11,6 +11,8 @@ module RobotsHelper
 		command_array = command.split
 
 		for element in command_array
+			should_update_robot = true
+
 			case element
 			when "MOVE"
 				set_move(robot)
@@ -20,17 +22,36 @@ module RobotsHelper
 				set_right(robot)
 			else
 				if element.include? "PLACE"
+					set_place(robot, element)
 				end
-			end
+				should_update_robot = false
+			end		
+				
+			update_robot(robot) if should_update_robot
+		end
+	end
 
-			unless robot.position.nil?
-				robot.update_attributes(position: robot.position, x_coordinate: robot.x_coordinate, y_coordinate: robot.y_coordinate)
-			end
+	def update_robot(robot)
+		unless robot.position.nil?
+			robot.update_attributes(position: robot.position, x_coordinate: robot.x_coordinate, y_coordinate: robot.y_coordinate)
 		end
 	end
 
 	def set_place (robot, string)
+		string = string.delete "PLACE_"
+		string_array = string.split(',')
 
+		robot.x_coordinate = string_array.at(0)
+		robot.y_coordinate = string_array.at(1)
+
+		Array direction_array = Array.new
+		Array position_array = Array.new
+		direction_array = ["NORTH","EAST", "SOUTH","WEST"]
+		position_array = [0,90,180,270]
+
+		index = direction_array.index(string_array.at(2))
+		robot.position = position_array.at(index)
+		robot.update_attributes(position: robot.position, x_coordinate: robot.x_coordinate, y_coordinate: robot.y_coordinate)
 	end
 
 	def set_left (robot)
@@ -51,5 +72,7 @@ module RobotsHelper
 			robot.y_coordinate -= 1 if robot.y_coordinate > 0
 		when 270
 			robot.x_coordinate -= 1 if robot.x_coordinate > 0
+		end
 	end
 end
+
