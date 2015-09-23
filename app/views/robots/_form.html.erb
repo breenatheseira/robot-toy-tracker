@@ -12,12 +12,15 @@
   <% end %>
 
   <%= form_for @robot do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-    <br/>
+  <div class="form-group">
+    <%= f.label "Name:" %>
+    <%= f.text_field :name, class: "form-control" %>    
+  </div>
+  
+  <div class="form-group">
     <%= f.label "Command for Robot:" %>
-    <%= text_field_tag :command %>  
-
+    <%= text_field_tag :command, nil, placeholder: 'example: PLACE 0,0,NORTH MOVE LEFT RIGHT REPORT', class: 'form-control' %>  
+  </div>
 
   <div class="actions">
     <%= f.submit %>
