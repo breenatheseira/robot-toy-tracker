@@ -5,6 +5,7 @@ class RobotsController < ApplicationController
   # GET /robots.json
   def index
     @robots = Robot.all
+    redirect_to new_robot_path if @robots.empty?
   end
 
   # GET /robots/1
