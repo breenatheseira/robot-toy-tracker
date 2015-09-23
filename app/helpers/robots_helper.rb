@@ -23,6 +23,8 @@ module RobotsHelper
 				set_left(robot)
 			when "RIGHT"
 				set_right(robot)
+			when "REPORT"
+				return true
 			else
 				if element.include? "PLACE"
 					set_place(robot, element)
@@ -32,6 +34,7 @@ module RobotsHelper
 				
 			update_robot(robot) if should_update_robot
 		end
+		false
 	end
 
 	def update_robot(robot)
