@@ -5,13 +5,16 @@
 <table>
   <thead>
     <tr>
-      <th colspan="3"></th>
+      <th>Name</th>
+      <th>Current Position</th>
     </tr>
   </thead>
 
   <tbody>
     <% @robots.each do |robot| %>
       <tr>
+        <td><%= robot.name %></td>
+        <td><%= robot.reported_position(robot) %></td>
         <td><%= link_to 'Show', robot %></td>
         <td><%= link_to 'Edit', edit_robot_path(robot) %></td>
         <td><%= link_to 'Destroy', robot, method: :delete, data: { confirm: 'Are you sure?' } %></td>
