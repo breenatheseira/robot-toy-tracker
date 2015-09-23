@@ -22,6 +22,6 @@ MOVE: allowing the robot to move one unit forwards in the direction it is facing
 REPORT: ends the command stream, immediately displays the current location and position of the robot
 <br/>
 
-The commands can be concatinated; however, there must be a preceeding space before each command.
+The commands can be concatenated; however, there must be a preceeding space before each command.
 
 Some sample input data can be found in DATA.md
