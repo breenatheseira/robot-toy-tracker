@@ -1,4 +1,11 @@
 <p id="notice"><%= notice %></p>
 
+<h1>Show Robot <%= @robot.id %></h1>
+
+Name: <%= @robot.name %>
+<br/>
+Report: <%= get_report(@robot) %>
+<br/>
+
 <%= link_to 'Edit', edit_robot_path(@robot) %> |
 <%= link_to 'Back', robots_path %>
