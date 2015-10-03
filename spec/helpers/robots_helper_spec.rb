@@ -11,19 +11,50 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe RobotsHelper, type: :helper do
-  let (:robot) { build(:robot) }
-  let (:direction_array) { ["NORTH","EAST","SOUTH","WEST"] }
-  let (:position_array) { [0,90,180,270] }
+	let (:direction_array) { ["NORTH","EAST","SOUTH","WEST"] }
+	let (:position_array) { [0,90,180,270] }
+	let(:robot) { build(:robot, position: position_array.sample, x_coordinate: 1, y_coordinate: 1) }
+	let (:position_index) { position_array.index(robot.position) } 
 
-  describe ".get_report(robot)" do
-  	context "display when robot's position.nil?" do
-  		it { expect(get_report(robot)).to include("is not placed on the table") }
-  	end
+	describe ".get_report(robot)" do
+		context "display when robot's position.nil?" do
+			let(:robot) { build(:robot) }
+			it { expect(get_report(robot)).to include("is not placed on the table") }
+		end
 
-  	context "display when robot's has a position" do
-  		let(:robot) { build(:robot, position: position_array.sample, x_coordinate: 1, y_coordinate: 1) }
-  		let (:position_index) { position_array.index(robot.position) }
-  		it { expect(get_report(robot)).to eq("#{robot.x_coordinate},#{robot.y_coordinate},#{direction_array.at(position_index)}") }
-  	end
-  end
+		context "display when robot's has a position" do
+			let (:position_index) { position_array.index(robot.position) }
+			it { expect(get_report(robot)).to eq("#{robot.x_coordinate},#{robot.y_coordinate},#{direction_array.at(position_index)}") }
+		end
+	end
+
+	describe ".set_left" do
+		context "when Robot's position is 0" do
+			it "returns 270" do
+				robot.position = 0
+				expect(set_left(robot)).to eq(270)
+			end
+		end
+
+		context "when Robot's position is 90" do
+			it "returns 0" do
+				robot.position = 90
+				expect(set_left(robot)).to eq(0)
+			end
+		end
+
+		context "when Robot's position is 180" do
+			it "returns 90" do
+				robot.position = 180
+				expect(set_left(robot)).to eq(90)
+			end
+		end
+
+		context "when Robot's position is 270" do
+			it "returns 180" do
+				robot.position = 270
+				expect(set_left(robot)).to eq(180)
+			end
+		end
+	end
 end
