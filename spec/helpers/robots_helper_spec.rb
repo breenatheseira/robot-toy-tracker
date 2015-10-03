@@ -57,4 +57,34 @@ RSpec.describe RobotsHelper, type: :helper do
 			end
 		end
 	end
+
+	describe ".set_right" do
+		context "when Robot's position is 0" do
+			it "returns 90" do
+				robot.position = 0
+				expect(set_right(robot)).to eq(90)
+			end
+		end
+
+		context "when Robot's position is 90" do
+			it "returns 180" do
+				robot.position = 90
+				expect(set_right(robot)).to eq(180)
+			end
+		end
+
+		context "when Robot's position is 180" do
+			it "returns 270" do
+				robot.position = 180
+				expect(set_right(robot)).to eq(270)
+			end
+		end
+
+		context "when Robot's position is 270" do
+			it "returns 0" do
+				robot.position = 270
+				expect(set_right(robot)).to eq(0)
+			end
+		end
+	end
 end
