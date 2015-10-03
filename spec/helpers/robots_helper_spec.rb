@@ -87,4 +87,24 @@ RSpec.describe RobotsHelper, type: :helper do
 			end
 		end
 	end
+
+	describe ".set_move" do
+		context "when robot's position is 0" do
+			for i in 0..4
+				context "and y_coordinate < #{i}" do
+					let(:robot) { build(:robot, position: 0, x_coordinate: 1, y_coordinate: i) }
+					it "returns y_coordinate to #{i+1}" do
+						expect(set_move(robot)).to eq(i+1)
+					end
+				end
+			end
+
+			context "and y_coordinate > 4" do
+				let(:robot) { build(:robot, position: 0, x_coordinate: 1, y_coordinate: 5) }
+				it "returns nil" do
+					expect(set_move(robot)).to be_falsey
+				end
+			end
+		end
+	end
 end
