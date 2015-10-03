@@ -11,5 +11,19 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe RobotsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let (:robot) { build(:robot) }
+  let (:direction_array) { ["NORTH","EAST","SOUTH","WEST"] }
+  let (:position_array) { [0,90,180,270] }
+
+  describe ".get_report(robot)" do
+  	context "display when robot's position.nil?" do
+  		it { expect(get_report(robot)).to include("is not placed on the table") }
+  	end
+
+  	context "display when robot's has a position" do
+  		let(:robot) { build(:robot, position: position_array.sample, x_coordinate: 1, y_coordinate: 1) }
+  		let (:position_index) { position_array.index(robot.position) }
+  		it { expect(get_report(robot)).to eq("#{robot.x_coordinate},#{robot.y_coordinate},#{direction_array.at(position_index)}") }
+  	end
+  end
 end
