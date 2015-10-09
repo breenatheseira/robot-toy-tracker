@@ -28,7 +28,7 @@ RSpec.describe RobotsHelper, type: :helper do
 		end
 	end
 
-	describe ".set_left" do
+	describe ".set_left(robot)" do
 		context "when Robot's position is 0" do
 			it "returns 270" do
 				robot.position = 0
@@ -58,7 +58,7 @@ RSpec.describe RobotsHelper, type: :helper do
 		end
 	end
 
-	describe ".set_right" do
+	describe ".set_right(robot)" do
 		context "when Robot's position is 0" do
 			it "returns 90" do
 				robot.position = 0
@@ -88,7 +88,7 @@ RSpec.describe RobotsHelper, type: :helper do
 		end
 	end
 
-	describe ".set_move" do
+	describe ".set_move(robot)" do
 		context "when robot's position is 0" do
 			for i in 0..4
 				context "and y_coordinate < #{i}" do
