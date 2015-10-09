@@ -107,4 +107,15 @@ RSpec.describe RobotsHelper, type: :helper do
 			end
 		end
 	end
+
+	describe ".update_robot" do
+		context "when robot's position = nil" do
+			let(:robot) { build(:robot) }
+			it { expect(update_robot(robot)).to be_falsey }
+		end
+
+		context "when robot's position is not nil" do
+			it { expect(update_robot(robot)).to eq(robot.update_attributes(x_coordinate: 4, y_coordinate: 5, position: 90)) }
+		end
+	end
 end
